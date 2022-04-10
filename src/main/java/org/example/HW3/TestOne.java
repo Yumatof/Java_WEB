@@ -37,7 +37,7 @@ public class TestOne {
         search.click();
 
         WebElement textInputArea = driver.findElement(By.xpath(".//input[@class=\"form-control\"]"));
-        textInputArea.sendKeys("хер\n");
+        textInputArea.sendKeys("кошка\n");
 
         List<WebElement> listAuthors = driver.findElements(By.xpath(".//div[@class=\"col-xs-6\"]"));
         try{
