@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class TestOne {
+public class Test1 {
     private static final String AUTHORS_IS_NULL = "The search result in the authors section turned up nothing.";
     private static final String ARTWORKS_IS_NULL = "The search result in the work section turned up nothing.";
     private static final String POST_IN_BLOG_IS_NULL = "The search result in the blog post section turned up nothing.";
@@ -73,7 +73,6 @@ public class TestOne {
             System.out.println(e.getMessage());
         }
 
-        //Thread.sleep(1000L);
         //driver.quit();
     }
     public static void checkListIsNull(String msg, List<WebElement> InputList) throws ListIsNull {
