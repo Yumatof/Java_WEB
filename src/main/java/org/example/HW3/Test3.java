@@ -9,13 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class Test3 {
     public static void main(String[] args) throws InterruptedException {
@@ -26,7 +24,7 @@ public class Test3 {
                 .addArguments("start-maximized");
 
         WebDriver driver = new ChromeDriver(chromeOptions);
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         driver.get("https://author.today/");
 
@@ -42,7 +40,9 @@ public class Test3 {
         WebElement addFilterFromForm = driver.findElement(By.xpath(".//select[@data-bind=\"valueWithInit: form\"]/option[@value=\"novel\"]"));
         addFilterFromForm.click();
 
-        Thread.sleep(1000l);//костыль
+        //Thread.sleep(1000l);//костыль
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".book-row:nth-child(4) img")));
 
         WebElement resetFilter = driver.findElement(By.xpath(".//a[@class=\"special-link ml-lg\"]"));
         resetFilter.click();
