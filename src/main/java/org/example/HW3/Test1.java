@@ -36,13 +36,13 @@ public class Test1 {
         search.click();
 
         WebElement textInputArea = driver.findElement(By.xpath(".//input[@class=\"form-control\"]"));
-        textInputArea.sendKeys("кошка\n");
+        textInputArea.sendKeys("tuhy\n");
 
         List<WebElement> listAuthors = driver.findElements(By.xpath(".//div[@class=\"col-xs-6\"]"));
         try{
             checkListIsNull(AUTHORS_IS_NULL, listAuthors);
         } catch (ListIsNull e) {
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
         }
 
         List<WebElement> listArtworks = driver.findElements(By.xpath(".//div[@class=\"bookcard\"]"));
