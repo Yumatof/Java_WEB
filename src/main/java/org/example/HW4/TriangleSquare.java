@@ -1,11 +1,22 @@
 package org.example.HW4;
 
+import static java.lang.Math.sqrt;
+
 public class TriangleSquare {
-    private static int sideA;
-    private static int sideB;
-    private static int sideC;
 
 
+    public double calculationSquare(int sideA, int sideB, int sideC){
+
+
+
+
+        int halfPerimeter = (sideA + sideB + sideC)/2;
+        return sqrt(halfPerimeter * (halfPerimeter - sideA) * (halfPerimeter - sideB) * (halfPerimeter - sideC));
+    }
+
+    private void checkSideTriangle(int sideA, int sideB, int sideC){
+
+    }
 
 
     }
