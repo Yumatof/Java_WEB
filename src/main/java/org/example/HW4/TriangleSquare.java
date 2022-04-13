@@ -16,11 +16,11 @@ public class TriangleSquare {
         } catch (NonExistentTriangleException be) {
             System.out.println(be.getMessage());
         }
-        if(sideA<=0 || sideB<=0 || sideC<=0) return NaN;
+        if(sideA<=0 || sideB<=0 || sideC<=0) return 0;
 
         if (!((sideA + sideB) > sideC)
                 || !((sideA + sideC) > sideB)
-                || !((sideB + sideC) > sideA)) return NaN;
+                || !((sideB + sideC) > sideA)) return 0;
 
         double halfPerimeter = ((double) sideA + sideB + sideC) / 2;
         return sqrt(halfPerimeter * (halfPerimeter - sideA) * (halfPerimeter - sideB) * (halfPerimeter - sideC));
