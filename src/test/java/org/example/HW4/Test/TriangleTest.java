@@ -1,9 +1,8 @@
-package org.example.HW3Test;
+package org.example.HW4.Test;
 
 
 import org.example.HW4.MyException.NonExistentTriangle;
 import org.example.HW4.TriangleSquare;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
