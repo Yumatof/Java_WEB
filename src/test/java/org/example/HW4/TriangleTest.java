@@ -1,4 +1,4 @@
-package org.example.HW4.Test;
+package org.example.HW4;
 
 
 import org.example.HW4.MyException.NonExistentTriangle;
