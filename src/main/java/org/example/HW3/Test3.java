@@ -40,7 +40,6 @@ public class Test3 {
         WebElement addFilterFromForm = driver.findElement(By.xpath(".//select[@data-bind=\"valueWithInit: form\"]/option[@value=\"novel\"]"));
         addFilterFromForm.click();
 
-        //Thread.sleep(1000l);//костыль
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".book-row:nth-child(4) img")));
 
