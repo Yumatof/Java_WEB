@@ -2,8 +2,11 @@ package org.example.HW5;
 
 import org.example.HW4.TriangleTest;
 import org.example.HW5.MyEception.ListIsNull;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,6 +23,7 @@ public class WebTest extends AbstractWebTest {
     private static final String POST_IN_BLOG_IS_NULL = "The search result in the blog post section turned up nothing.";
     private static final String ILLUSTRATION_IS_NULL = "The search result in the illustration section turned up nothing.";
     private static final String COLLECTION_IS_NULL = "The search result in the selection section turned up nothing.";
+    private static final String FIND_TEXT_RU ="Только зарегистрированные пользователи могут оставлять комментарии.";
 
     static Logger logger = LoggerFactory.getLogger(TriangleTest.class);
 
@@ -39,7 +43,6 @@ public class WebTest extends AbstractWebTest {
 
         checkModalWindow();
     }
-
     @Test
     @DisplayName("Check unauthorized user can download book")
     void webTest2(){
@@ -61,7 +64,6 @@ public class WebTest extends AbstractWebTest {
 
         checkModalWindow();
     }
-
     @Test
     @DisplayName("Reset filter settings to default")
     void webTest3(){
@@ -91,7 +93,7 @@ public class WebTest extends AbstractWebTest {
         logger.info("Run test - Check search in all sections");
         Actions search = new Actions(getDriver());
         search.click(getDriver().findElement(By.xpath(".//li[@class=\"nav-icon\"]/a/i")))
-              //.pause(1000l)
+              .pause(1000l)
               .sendKeys(getDriver().findElement(By.xpath(".//input[@class=\"form-control\"]")),"кошка\n")
               .build()
               .perform();
@@ -127,36 +129,39 @@ public class WebTest extends AbstractWebTest {
             logger.info(e.getMessage());
         }
     }
-
     @Test
     @DisplayName("Check unauthorized user can buy a book")
     void webTest5(){
-        logger.info("");
+        logger.info("Run test - Check unauthorized user can buy a book");
         WebElement discounts = getDriver().findElement(By.xpath(".//div/a[@href=\"/work/discounts\"]"));
         discounts.click();
 
         WebElement choiceBookToBuy = getDriver().findElement(By.cssSelector(".book-row:nth-child(4) img"));
         choiceBookToBuy.click();
 
-        //WebElement buttonBuy = getDriver().findElement(By.cssSelector(".btn-buy-book .btn"));
-        //buttonBuy.click();
+        WebElement buttonBuy = getDriver().findElement(By.cssSelector(".btn-buy-book .btn"));
+        buttonBuy.click();
 
         checkModalWindow();
     }
-
-    //6 тест - https://stackoverflow.com/questions/25733877/selenium-how-do-you-check-scroll-position
-    //@Test
-    @DisplayName("")
+    @Test
+    @DisplayName("Inability to add a comment by an unauthorized user")
     void webTest6(){
-        logger.info("");
+        logger.info("Run test - Inability to add a comment by an unauthorized user");
+        WebElement discussion = getDriver().findElement(By.xpath(".//a[@href=\"/discussions\"]"));
+        discussion.click();
+
+        WebElement choicePost = getDriver().findElement(By.xpath(".//h3[@class=\"post-title\"]/a"));
+        choicePost.click();
+
+        Assert.assertEquals(getDriver().getPageSource().contains(FIND_TEXT_RU), true);
     }
 
-    public static<T> void checkListIsNull(String msg, List<T> InputList) throws ListIsNull {
-        if(InputList.size() == 0) throw new ListIsNull(msg);
-    }
     public static void checkModalWindow(){
+
         try {
-            WebElement modalWindow = getDriver().findElement(By.cssSelector(".modal-title"));
+            WebElement registrationLink = getDriver().findElement(By.xpath(".//a[@href=\"/account/register\"]"));
+            registrationLink.click();
         } catch (ElementNotInteractableException e){
             logger.info(e.getSupportUrl());
         }
