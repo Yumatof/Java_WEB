@@ -1,45 +1,54 @@
 package org.example.HW6;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.HW5.MyEception.ListIsNull;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.Duration;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class AbstractTest {
     static WebDriver driver;
+    static Logger logger = LoggerFactory.getLogger("webTest");
     @BeforeAll
-    static void setDriver(){
+    static void init(){
         WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito")
-               .addArguments("star-maximizes")
-               .setPageLoadTimeout(Duration.ofSeconds(10));
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--incognito")
+                .addArguments("start-maximized");
 
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver = new ChromeDriver(chromeOptions);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
     @BeforeEach
-    void initMainPage(){
+    void goTo(){
         Assertions.assertDoesNotThrow(()-> driver.navigate().to("https://author.today/"),
                 "Page not found");
     }
     @AfterAll
     static void close(){
-        if(driver != null) driver.quit();
+        //driver.quit();
     }
-    public static WebDriver getDriver(){
+    public static WebDriver getWebDriver(){
         return driver;
     }
-    public static<T> void checkListIsNull(String msg, List<T> InputList) throws ListIsNull {
-        if(InputList.size() == 0) throw new ListIsNull(msg);
-    }
 
+    public static void checkModalWindow(){
+        try {
+            WebElement registrationLink = driver.findElement(By.xpath(".//a[@href=\"/account/register\"]"));
+            registrationLink.click();
+        } catch (ElementNotInteractableException e){
+            logger.info(e.getSupportUrl());
+        }
+    }
 
 }

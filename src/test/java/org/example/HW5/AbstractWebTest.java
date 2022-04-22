@@ -1,7 +1,7 @@
 package org.example.HW5;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.HW5.MyEception.ListIsNull;
+import org.example.HW3.MyException.ListIsNull;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

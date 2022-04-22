@@ -1,6 +1,6 @@
 package org.example.HW4;
 
-import org.example.HW4.MyException.NonExistentTriangle;
+import org.example.HW3.MyException.NonExistentTriangle;
 import static java.lang.Math.sqrt;
 
 public class TriangleSquare {

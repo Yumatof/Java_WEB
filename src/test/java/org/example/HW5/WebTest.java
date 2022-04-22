@@ -1,7 +1,7 @@
 package org.example.HW5;
 
 import org.example.HW4.TriangleTest;
-import org.example.HW5.MyEception.ListIsNull;
+import org.example.HW3.MyException.ListIsNull;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ public class WebTest extends AbstractWebTest {
     private static final String COLLECTION_IS_NULL = "The search result in the selection section turned up nothing.";
     private static final String FIND_TEXT_RU ="Только зарегистрированные пользователи могут оставлять комментарии.";
 
-    static Logger logger = LoggerFactory.getLogger(TriangleTest.class);
+    static Logger logger = LoggerFactory.getLogger(AbstractWebTest.class);
 
     @Test
     @DisplayName("Check unauthorized user can add to library from button Read")
@@ -158,7 +158,6 @@ public class WebTest extends AbstractWebTest {
     }
 
     public static void checkModalWindow(){
-
         try {
             WebElement registrationLink = getDriver().findElement(By.xpath(".//a[@href=\"/account/register\"]"));
             registrationLink.click();
