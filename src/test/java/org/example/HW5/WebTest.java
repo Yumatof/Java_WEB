@@ -1,12 +1,9 @@
 package org.example.HW5;
 
-import org.example.HW4.TriangleTest;
 import org.example.HW3.MyException.ListIsNull;
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;

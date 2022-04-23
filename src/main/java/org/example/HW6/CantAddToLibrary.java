@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddToLibrary extends AbstractPage {
+public class CantAddToLibrary extends AbstractPage {
     @FindBy(css = "#mostPopularWorks .bookcard:nth-child(7) .lazyloaded")
     private WebElement popularBook;
     @FindBy(css = ".btn > span")
@@ -12,18 +12,18 @@ public class AddToLibrary extends AbstractPage {
     @FindBy(css = ".dropdown-menu-links > li:nth-child(1) > .pl")
     private WebElement readButton;
 
-    public AddToLibrary(WebDriver driver){
+    public CantAddToLibrary(WebDriver driver){
         super(driver);}
 
-    public AddToLibrary popularBookClick(){
+    public CantAddToLibrary popularBookClick(){
         popularBook.click();
         return this;
     }
-    public AddToLibrary addToLibraryClick(){
+    public CantAddToLibrary addToLibraryClick(){
         addToLibrary.click();
         return this;
     }
-    public AddToLibrary readButtonClick(){
+    public CantAddToLibrary readButtonClick(){
         readButton.click();
         return this;
     }
