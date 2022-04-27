@@ -12,6 +12,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+    <junit-platform-surefire-provider.version>1.1.0</junit-platform-surefire-provider.version>
+    <aspectj.version>1.8.10</aspectj.version>
   </properties>
 
   <dependencies>
@@ -65,9 +68,53 @@
       <artifactId>junit-vintage-engine</artifactId>
       <version>5.7.0</version>
     </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit5</artifactId>
+      <version>2.17.3</version>
+      <scope>test</scope>
+    </dependency>
 </dependencies>
 
   <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
+        <configuration>
+          <testFailureIgnore>false</testFailureIgnore>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+          <systemProperties>
+            <property>
+              <name>junit.jupiter.extensions.autodetection.enabled</name>
+              <value>true</value>
+            </property>
+          </systemProperties>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.2.0</version>
+          </dependency>
+          <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjweaver</artifactId>
+          <version>1.8.10</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    <plugin>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-maven</artifactId>
+      <version>2.11.2</version>
+      <configuration>
+<buildDirectory>e:\repo\Java_WEB\Java_WEB.git</buildDirectory>
+      </configuration>
+    </plugin>
+  </plugins>
   </build>
 
   <reports>
@@ -77,7 +124,7 @@
         <artifactId>maven-surefire-report-plugin</artifactId>
         <version>3.0.0-M6</version>
       </plugin>
+
     </plugins>
   </reports>
-
 </project>

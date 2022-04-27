@@ -1,6 +1,5 @@
-package org.example.HW6;
+package org.example.HW7;
 
-import org.example.HW7.MyUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

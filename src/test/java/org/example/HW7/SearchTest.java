@@ -1,13 +1,13 @@
-package org.example.HW6;
+package org.example.HW7;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SearchTest extends AbstractTest{
+public class SearchTest extends AbstractTest {
 
     @Test
     public void searchTxtTest(){
-        Search search = new Search(getWebDriver());
+        org.example.HW6.Search search = new Search(getWebDriver());
         search.elementSearchClick()
                 .inputTxtArea("коjjjшка\n");
         assertTrue(search.checkListAuthors(), String.valueOf(true));
@@ -18,3 +18,4 @@ public class SearchTest extends AbstractTest{
     }
 
 }
+
